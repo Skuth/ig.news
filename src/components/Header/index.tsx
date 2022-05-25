@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { SignInButton } from "../SignInButton"
 
 import styles from "./styles.module.scss"
@@ -6,14 +8,20 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header__container}>
       <div className={styles.header__content}>
-        <img
-          src="/images/logo.svg"
-          alt="ig.news"
-        />
+        <Link href="/">
+          <img
+            src="/images/logo.svg"
+            alt="ig.news"
+          />
+        </Link>
 
         <nav>
-          <a href="#" className={styles.active}>Home</a>
-          <a href="#">Posts</a>
+          <Link href="/" passHref>
+            <a className={styles.active}>Home</a>
+          </Link>
+          <Link href="/posts" passHref>
+            <a>Posts</a>
+          </Link>
         </nav>
 
         <SignInButton />

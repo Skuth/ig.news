@@ -1,4 +1,7 @@
+import { useState } from "react"
 import { useSession, signIn } from "next-auth/react"
+
+import { FiLoader } from "react-icons/fi"
 
 import { api } from "../../services/api"
 import { getStripeJs } from "../../services/stripe-js"
@@ -12,11 +15,15 @@ interface SubscribeButtonProps {
 const SubscribeButton: React.FC<SubscribeButtonProps> = ({ priceId }) => {
   const { data: session } = useSession()
 
+  const [isLoading, setLoading] = useState<boolean>(false)
+
   const handleSubscribe = async () => {
     if (!session) {
       signIn("github")
       return
     }
+
+    setLoading(true)
 
     try {
       const response = await api.post("subscribe")
@@ -29,13 +36,17 @@ const SubscribeButton: React.FC<SubscribeButtonProps> = ({ priceId }) => {
     } catch (error) {
       alert(error.message)
     }
+
+    setLoading(false)
   }
 
   return (
     <button
+      disabled={isLoading}
       className={styles.subscribe__button}
       onClick={handleSubscribe}
     >
+      {isLoading && <FiLoader />}
       Subscribe now
     </button>
   )
