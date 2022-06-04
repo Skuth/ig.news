@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next"
+import { GetStaticProps, NextPage } from "next"
 import Head from "next/head"
 
 import { stripe } from "../services/stripe"
@@ -14,7 +14,7 @@ interface HomeProps {
   }
 }
 
-const Home = ({ product }: HomeProps) => {
+const Home: NextPage = ({ product }: HomeProps) => {
   return (
     <>
       <Head>

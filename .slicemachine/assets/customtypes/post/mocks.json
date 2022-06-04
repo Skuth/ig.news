@@ -1,0 +1,26 @@
+{
+  "id": "6194d7cb-6313-4f19-868f-499fc47344af",
+  "uid": "nihil-unde-accusantium",
+  "type": "post",
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Target extensible networks",
+        "spans": []
+      }
+    ],
+    "content": [
+      {
+        "type": "heading1",
+        "text": "Evolve rich metrics",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Duis non dolor nulla deserunt pariatur voluptate in dolore. Exercitation ullamco fugiat ipsum magna aliqua eu et anim magna adipisicing labore fugiat laboris dolor.",
+        "spans": []
+      }
+    ]
+  }
+}

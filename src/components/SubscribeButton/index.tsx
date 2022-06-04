@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useSession, signIn } from "next-auth/react"
+import { useRouter } from "next/router"
 
 import { FiLoader } from "react-icons/fi"
 
@@ -14,12 +15,18 @@ interface SubscribeButtonProps {
 
 const SubscribeButton: React.FC<SubscribeButtonProps> = ({ priceId }) => {
   const { data: session } = useSession()
+  const router = useRouter()
 
   const [isLoading, setLoading] = useState<boolean>(false)
 
   const handleSubscribe = async () => {
     if (!session) {
       signIn("github")
+      return
+    }
+
+    if (session.activeSubscription) {
+      router.push("/posts")
       return
     }
 
