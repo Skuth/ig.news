@@ -1,6 +1,5 @@
 import { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { RichText } from "prismic-dom"
 import { getSession } from "next-auth/react";
 
@@ -8,7 +7,7 @@ import { Post } from "../../../@types/Post";
 
 import { getPrismicClient } from "../../../services/prismic";
 
-import styles from "./styles.module.scss"
+import styles from "../post.module.scss"
 
 interface PostsProps {
   post: {
@@ -45,10 +44,10 @@ const PostPage: NextPage<PostsProps> = ({ post }) => {
 export const getServerSideProps: GetServerSideProps = async ({ req, previewData, params }) => {
   const session = await getSession({ req })
 
-  if (!session || session && !session.activeSubscription) {
+  if (!session?.activeSubscription) {
     return {
       redirect: {
-        destination: "/",
+        destination: `/posts/preview/${params.slug}`,
         permanent: false
       }
     }
